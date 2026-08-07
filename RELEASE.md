@@ -100,6 +100,7 @@ cd /home/lanpeng/wmforge
 |------|------|------|
 | `git push` TLS 握手中断 | github.com 被墙 | 加 `-c http.proxy=http://192.168.2.33:8080` |
 | push 认证 401 | 认证前缀用错 | 用 `https://<token>@github.com/...`（token 当用户名） |
+| push 报缺密码（`could not read Password`） | URL 里写 `$VAR` 但 `VAR=x git push` 不会把变量传进 URL | token 直接硬编码进 URL，或先 `export` 再 push |
 | build 报 PEP 639 license 冲突 | `license` 字段与 License classifier 并存 | 删掉 classifier，只留 `license = "MIT"` |
 | TestPyPI 403 | token 是 pypi.org 的 | 跳过 TestPyPI，直接发 PyPI |
 | pip 找不到新版本 | 清华镜像同步延迟 | 临时 `--index-url https://pypi.org/simple/` |
