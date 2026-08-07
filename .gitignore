@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.venv/
+
+# 内部实验脚本（含本机路径，禁止入库）
+_tmp_*.py
+
+# 编辑器
+.vscode/
+.idea/

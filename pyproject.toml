@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wmforge"
+version = "0.1.0"
+description = "Production-grade blind watermarking pipeline: DWT+DCT+SVD vectorized core, RS(64,24) ECC, trace-id generation, single-image embed/extract with pre-alignment."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{ name = "RevelryAge" }]
+keywords = ["watermark", "blind-watermark", "dwt", "dct", "svd", "traceability", "leak-detection"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Security",
+]
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python-headless>=4.5",
+    "Pillow>=9.0",
+    "PyWavelets>=1.4",
+]
+
+[project.optional-dependencies]
+# blind-watermark 0.4.4 仅用于交叉兼容回归测试（legacy 库逐位对齐验证），
+# 生产管线完全不需要它（core 为独立向量化实现）。
+legacy = ["blind-watermark==0.4.4"]
+
+[project.scripts]
+wmforge = "wmforge.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/RevelryAge/wmforge"
+Repository = "https://github.com/RevelryAge/wmforge"
+
+[tool.setuptools]
+packages = ["wmforge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
